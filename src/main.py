@@ -1,12 +1,30 @@
-import math
+def read_matrix(rows, cols):
+    """Чтение матрицы с клавиатуры."""
+    matrix = []
+    for i in range(rows):
+        row = list(map(int, input(f"Строка {i+1}: ").split()))
+        matrix.append(row)
+    return matrix
 
-def solve_quadratic(a, b, c):
-    d = b**2 - 4*a*c
-    if d < 0:
-        return None
-    if d == 0:
-        return (-b / (2*a),)
-    return ((-b + math.sqrt(d)) / (2*a), (-b - math.sqrt(d)) / (2*a))
+
+def transpose(matrix):
+    """Транспонирование матрицы."""
+    return [list(row) for row in zip(*matrix)]
+
+
+def print_matrix(matrix):
+    """Вывод матрицы на экран."""
+    for row in matrix:
+        print(" ".join(map(str, row)))
+
 
 if __name__ == "__main__":
-    print(solve_quadratic(1, -3, 2))
+    rows = int(input("Количество строк: "))
+    cols = int(input("Количество столбцов: "))
+    m = read_matrix(rows, cols)
+    print("Исходная матрица:")
+    print_matrix(m)
+    print("Транспонированная матрица:")
+    print_matrix(transpose(m))
+
+
