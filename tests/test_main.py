@@ -1,7 +1,21 @@
-from src.main import solve_quadratic
+import sys
+import os
 
-def test_two_roots():
-    assert solve_quadratic(1, -3, 2) == (2.0, 1.0)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def test_no_roots():
-    assert solve_quadratic(1, 0, 1) is None
+from src.main import transpose
+
+
+def test_transpose_square():
+    m = [[1, 2], [3, 4]]
+    assert transpose(m) == [[1, 3], [2, 4]]
+
+
+def test_transpose_rectangular():
+    m = [[1, 2, 3], [4, 5, 6]]
+    assert transpose(m) == [[1, 4], [2, 5], [3, 6]]
+
+
+def test_transpose_single():
+    m = [[7]]
+    assert transpose(m) == [[7]]
